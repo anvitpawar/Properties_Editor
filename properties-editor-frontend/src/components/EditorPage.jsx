@@ -11,13 +11,38 @@ const EditorPage = () => {
     const [showNewPair, setShowNewPair] = useState(false);
 
     useEffect(() => {
-        fetchProperties();
+        displayPropertiesFile();
     }, [reqId]);
-
-    const fetchProperties = async () => {
+    const displayPropertiesFile = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/properties/${reqId}`);
-            setProperties(response.data);
+            const response = await axios.get(`${process.env.MICROSERVICE_URL}/api/v1/getPropertiesTemplate/CDMPPROP`, {
+                headers: generateSearchHeader(appGlobalState)
+            });
+    
+            if (response.status !== 200) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            setProperties(response.data.templateObjList[0].json);
+    
+            const response1 = await axios.get(`${process.env.MICROSERVICE_URL}/api/v1/searchRequirementForReqID/${location.state}`, {
+                headers: generateSearchHeader(appGlobalState)
+            });
+    
+            if (response1.status !== 200) {
+                throw new Error(`HTTP error from response1! Status: ${response1.status}`);
+            }
+    
+            setFileName(response1.data[0].tableName);
+            setJiraKey(response1.data[0].requirementId);
+    
+            let requirement = {
+                requirementId: jiraKey,
+                parameters: properties,
+                fileName: fileName
+            };
+    
+            setFormData(requirement);
         } catch (error) {
             console.error("Error fetching properties:", error);
         }
