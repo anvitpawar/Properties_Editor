@@ -1,0 +1,18 @@
+{
+  "mainBox": {
+    "type": "BOX",
+    "insert_job": {  },
+    "job_type": {  },
+    
+    "properties": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "object", "title": "BOX", "properties": { } },
+          { "type": "object", "title": "CMD", "properties": {  } },
+          { "type": "object", "title": "FW", "properties": {  } }
+        ]
+      }
+    }
+  }
+}
