@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
 
 const EditorPage = () => {
     const { reqId } = useParams();
@@ -18,7 +20,7 @@ const EditorPage = () => {
     const displayPropertiesFile = async () => {
         try {
             const response = await axios.get(`${process.env.MICROSERVICE_URL}/api/v1/getPropertiesTemplate/CDMPPROP`, {
-                headers: generateSearchHeader(appGlobalState)
+                headers: generateSearHeader(appGlobalState)
             });
 
             if (response.status !== 200) {
@@ -28,7 +30,7 @@ const EditorPage = () => {
             setProperties(response.data.templateObjList[0].json);
 
             const response1 = await axios.get(`${process.env.MICROSERVICE_URL}/api/v1/searchRequirementForReqID/${location.state}`, {
-                headers: generateSearchHeader(appGlobalState)
+                headers: generateSearHeader(appGlobalState)
             });
 
             if (response1.status !== 200) {

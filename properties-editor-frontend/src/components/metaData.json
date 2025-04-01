@@ -1,0 +1,172 @@
+{
+    "mainBox": {
+      "type": "BOX",
+      "insert_job": {
+        "type": "string",
+        "required": true
+      },
+      "job_type": {
+        "type": "string",
+        "required": true,
+        "default": "BOX"
+      },
+      "owner": {
+        "type": "string",
+        "required": true
+      },
+      "permission": {
+        "type": "string",
+        "required": true
+      },
+      "date_conditions": {
+        "type": "number",
+        "required": true
+      },
+      "days_of_week": {
+        "type": "string",
+        "required": true
+      },
+      "start_times": {
+        "type": "string",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "required": true
+      },
+      "alarm_if_fail": {
+        "type": "number",
+        "required": true
+      },
+      "alarm_if_terminated": {
+        "type": "number",
+        "required": true
+      },
+      "timezone": {
+        "type": "string",
+        "required": true
+      },
+      "group": {
+        "type": "string",
+        "required": true
+      },
+      "application": {
+        "type": "string",
+        "required": true
+      },
+      "properties": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "title": "BOX",
+              "properties": {
+                "insert_job": {
+                  "type": "string",
+                  "required": true
+                },
+                "job_type": {
+                  "type": "string",
+                  "required": true,
+                  "default": "BOX"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "CMD",
+              "properties": {
+                "insert_job": {
+                  "type": "string",
+                  "required": true
+                },
+                "box_name": {
+                  "type": "string",
+                  "required": true
+                },
+                "command": {
+                  "type": "string",
+                  "required": true
+                },
+                "machine": {
+                  "type": "string",
+                  "required": true
+                },
+                "permission": {
+                  "type": "string",
+                  "required": true
+                },
+                "condition": {
+                  "type": "string",
+                  "required": true
+                },
+                "description": {
+                  "type": "string",
+                  "required": true
+                },
+                "alarm_if_fail": {
+                  "type": "number",
+                  "required": true
+                },
+                "alarm_if_terminated": {
+                  "type": "number",
+                  "required": true
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "FW",
+              "properties": {
+                "insert_job": {
+                  "type": "string",
+                  "required": true
+                },
+                "box_name": {
+                  "type": "string",
+                  "required": true
+                },
+                "machine": {
+                  "type": "string",
+                  "required": true
+                },
+                "permission": {
+                  "type": "string",
+                  "required": true
+                },
+                "condition": {
+                  "type": "string",
+                  "required": true
+                },
+                "description": {
+                  "type": "string",
+                  "required": true
+                },
+                "term_run_time": {
+                  "type": "number",
+                  "required": true
+                },
+                "max_run_alarm": {
+                  "type": "number",
+                  "required": true
+                },
+                "priority": {
+                  "type": "number",
+                  "required": true
+                },
+                "alarm_if_fail": {
+                  "type": "number",
+                  "required": true
+                },
+                "alarm_if_terminated": {
+                  "type": "number",
+                  "required": true
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
